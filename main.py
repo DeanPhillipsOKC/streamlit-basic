@@ -56,3 +56,31 @@ st.markdown("## Metrics")
 st.metric(label="Population", value=900, delta=20, delta_color="normal")
 st.metric(label="Visitors", value=1123, delta=-100, delta_color="normal")
 st.metric(label="Expenses", value=500, delta=33, delta_color="inverse")
+
+st.header("Charting elements")
+
+st.markdown("## Line chart")
+st.line_chart(df, x="year", y=["col1", "col2", "col3"])
+
+st.markdown("## Area chart")
+st.area_chart(df, x="year", y=["col1", "col2", "col3"])
+
+st.markdown("## Bar chart")
+st.bar_chart(df, x="year", y=["col1", "col2", "col3"])
+
+st.markdown("## Map using coordinates in csv")
+geo_df = pd.read_csv("data/sample-map.csv")
+st.map(geo_df)
+
+st.markdown("## matplotlib")
+
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+ax.plot(df.year, df.col1)
+ax.set_title("My figure title")
+ax.set_xlabel("x label")
+ax.set_ylabel("y label")
+fig.autofmt_xdate() 
+
+st.pyplot(fig)
