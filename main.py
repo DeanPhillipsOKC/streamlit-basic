@@ -4,7 +4,7 @@ import streamlit as st
 st.title("Streamlit Basics")
 
 # Header
-st.header("Main header")
+st.header("Text examples (This is a header)")
 
 # Subheader
 st.subheader("This is a subheader")
@@ -36,3 +36,23 @@ st.divider()
 st.text("text below the divider")
 
 st.write("Some written text")
+
+st.header("Data display elements")
+
+import pandas as pd
+
+df = pd.read_csv("data/sample.csv", dtype="int")
+
+st.markdown("## With dataframe")
+st.dataframe(df)
+
+st.markdown("## With write")
+st.write(df)
+
+st.markdown("## Simple table (not sorting and stuff)")
+st.table(df)
+
+st.markdown("## Metrics")
+st.metric(label="Population", value=900, delta=20, delta_color="normal")
+st.metric(label="Visitors", value=1123, delta=-100, delta_color="normal")
+st.metric(label="Expenses", value=500, delta=33, delta_color="inverse")
