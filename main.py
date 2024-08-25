@@ -118,3 +118,33 @@ st.subheader("Select box")
 
 select = st.selectbox("Choose a column", options=df.columns[1:], index=0)
 st.write(select)
+
+st.divider()
+st.subheader("Multiselect")
+
+multiselect = st.multiselect("Choose as many columns as you want", options=df.columns[1:], default=["col1"], max_selections=3)
+st.write(multiselect)
+
+st.divider()
+st.subheader("Slider")
+
+slider = st.slider("Pick a number", min_value=0, max_value=10, value=0, step=1)
+st.write(slider)
+
+st.divider()
+st.subheader("Text input")
+
+text_input = st.text_input("What's your name?", placeholder="John Doe")
+st.write(f"Your name is {text_input}")
+
+st.divider()
+st.subheader("Number input")
+
+number_input = st.number_input("Pick a numbr", min_value=0, max_value=10, value=0)
+st.write(f"You picked {number_input}")
+
+st.divider()
+st.subheader("Text area")
+
+text_area = st.text_area("Enter a comment", height=200, placeholder="Write your comment here")
+st.write(text_area)
