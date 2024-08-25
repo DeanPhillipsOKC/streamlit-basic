@@ -148,3 +148,37 @@ st.subheader("Text area")
 
 text_area = st.text_area("Enter a comment", height=200, placeholder="Write your comment here")
 st.write(text_area)
+
+st.divider()
+st.subheader("Forms")
+
+with st.form("form_key"):
+    st.write("What would you like to order?")
+    appetizer = st.selectbox("Appetizers", options=["choice1", "choice2", "choice3"])
+    main = st.selectbox("Main course", options=["choice1", "choice2", "choice3"])
+    dessert = st.selectbox("Dessert", options=["choice1", "choice2", "choice3"])
+
+    wine = st.checkbox("Are you bringing your own wine?")
+
+    visit_date = st.date_input("When are you coming?")
+    visit_time = st.time_input("What time are you coming?")
+    
+    allergies = st.text_area("Any allergies?", placeholder="Leave us a note for allergies")
+
+    submit_btn = st.form_submit_button("Submit")
+
+    if submit_btn:
+        st.write(f"""
+Appetizer: {appetizer}
+
+Main course: {main}
+
+Dessert: {dessert}
+
+Are you bringing your own wine: {"yes" if wine else "no"}
+
+{visit_date}
+{visit_time}
+
+{allergies}
+""")
