@@ -84,3 +84,37 @@ ax.set_ylabel("y label")
 fig.autofmt_xdate() 
 
 st.pyplot(fig)
+
+st.header("Input widgets (part 1)")
+
+st.divider()
+st.subheader("Buttons")
+primary_btn = st.button(label="Primary", type="primary")
+secondary_btn = st.button(label="Secondary", type="secondary")
+
+if primary_btn:
+    st.write("Hello from primary")
+
+if secondary_btn:
+    st.write("Hello from secondary")
+
+st.divider()
+st.subheader("Checkboxes")
+checkbox = st.checkbox("Remember me")
+
+if checkbox:
+    st.write("I will remember you")
+else:
+    st.write("I will forget you")
+
+st.divider()
+st.subheader("Radio buttons")
+
+radio = st.radio("choose a column", options=df.columns[1:], index=0, horizontal=False)
+st.write(radio)
+
+st.divider()
+st.subheader("Select box")
+
+select = st.selectbox("Choose a column", options=df.columns[1:], index=0)
+st.write(select)
