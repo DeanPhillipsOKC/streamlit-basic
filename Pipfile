@@ -6,8 +6,13 @@ name = "pypi"
 [packages]
 streamlit = "*"
 matplotlib = "*"
+setuptools = "*"
+wheel = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[pipenv]
+allow_prereleases = true
