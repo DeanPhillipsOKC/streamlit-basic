@@ -209,6 +209,32 @@ def get_sample_data():
 def get_location_data():
     return pd.read_csv("data/sample-map.csv")
 
+def display_stateful_app_demo():
+    st.header("Stateful apps demo")
+    st.write("Here is the session state:")
+    st.write(st.session_state)
+    st.button("Update state")
+
+    # set using key-value syntax
+    if "key" not in st.session_state:
+        st.session_state["key"] = "value"
+
+    # set using attribute syntax
+    if "attribute" not in st.session_state:
+        st.session_state.attribute = "another value"
+
+    # Read value from session state
+    st.write(f'Reading with key/value syntax: {st.session_state["key"]}')
+    st.write(f'Reading with the attribute syntax: {st.session_state.attribute}')
+
+    # Update values in state
+    st.session_state["key"] = "new value"
+    st.session_state.attribute = "updated value"
+
+    # Delete items in state
+    del st.session_state["key"]
+    del st.session_state.attribute
+
 # Main Execution
 if __name__ == "__main__":
     # Load data
@@ -223,3 +249,4 @@ if __name__ == "__main__":
     display_forms()
     display_layout_elements(df)
     display_caching_demonstration()
+    display_stateful_app_demo()
