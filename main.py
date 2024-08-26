@@ -201,12 +201,19 @@ def display_caching_demonstration():
 
     st.write(f"The prediction is: {pred[0]}")
 
+@st.cache_data
+def get_sample_data():
+    return pd.read_csv("data/sample.csv", dtype="int")
+
+@st.cache_data
+def get_location_data():
+    return pd.read_csv("data/sample-map.csv")
 
 # Main Execution
 if __name__ == "__main__":
     # Load data
-    df = pd.read_csv("data/sample.csv", dtype="int")
-    geo_df = pd.read_csv("data/sample-map.csv")
+    df = get_sample_data()
+    geo_df = get_location_data()
 
     # Display elements
     display_text_elements()
