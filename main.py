@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import numpy as np
 from sklearn.linear_model import LinearRegression
+from datetime import datetime, timedelta
 
 # Helper Functions
 def display_text_elements():
@@ -235,6 +236,35 @@ def display_stateful_app_demo():
     del st.session_state["key"]
     del st.session_state.attribute
 
+def display_advanced_state_management_demo():
+    st.header("Advanced State Management Demonstration")
+
+    st.subheader("Store widget value in session state")
+    st.slider("SSelect a number", 0, 10, key="assd_slider")
+    st.write(st.session_state)
+
+    st.subheader("Initialize widget value with session state")
+    if "assd_num_input" not in st.session_state:
+        st.session_state["assd_num_input"] = 5
+    st.number_input("pick a number", 0, 10, key="assd_num_input")
+
+    st.subheader("Use callbacks")
+    def add_time_delta():
+        initial = st.session_state["assd_start_date"]
+
+        if st.session_state["assd_radio_range"] == "7 days":
+            st.session_state["assd_end_date"] = initial + timedelta(days=7)
+        elif st.session_state["assd_radio_range"] == "28 days":
+            st.session_state["assd_end_date"] = initial + timedelta(days=28)
+        else:
+            pass
+
+    st.markdown("#### Select your time range")
+    st.radio("Select a range", ["7 days", "28 days", "custon"], horizontal=True, key="assd_radio_range", on_change=add_time_delta)
+    col1, col2, col3 = st.columns(3)
+    col1.date_input("Start date", key="assd_start_date", on_change=add_time_delta)
+    col2.date_input("End date", key="assd_end_date")
+
 # Main Execution
 if __name__ == "__main__":
     # Load data
@@ -250,3 +280,4 @@ if __name__ == "__main__":
     display_layout_elements(df)
     display_caching_demonstration()
     display_stateful_app_demo()
+    display_advanced_state_management_demo()
