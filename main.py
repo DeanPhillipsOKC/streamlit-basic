@@ -267,9 +267,20 @@ def display_advanced_state_management_demo():
 
 # Main Execution
 if __name__ == "__main__":
+    st.set_page_config(
+        page_title="Homepage",
+        page_icon="🏠",
+        layout="centered",
+        initial_sidebar_state="auto"
+    )
+
     # Load data
     df = get_sample_data()
     geo_df = get_location_data()
+
+    # Make the simple data frame available to the other pages
+    if "simple_df" not in st.session_state:
+        st.session_state["simple_df"] = df
 
     # Display elements
     display_text_elements()
